@@ -8,25 +8,25 @@ print(openpyxl.__version__)
 # David added comment
 # David added a second comment March 18, 2025
 # Read Excel file sheet: ISM_StressTest
-stress_test = pd.read_excel('C:/Users/A02369941/Downloads/HydrologyScenarios.xlsx', sheet_name = 'ISM_StressTest')
+ensemble = pd.read_excel('C:/Users/A02369941/Downloads/HydrologyScenarios.xlsx', sheet_name = 'ISM_Full')
 # Display data
-#print(stress_test)
+#print(ensemble)
 
 # Minimum flow per Trace
-#min_flow_rates = stress_test['Trace1'].min()
+#min_flow_rates = ensemble['Trace1'].min()
 ###print("Minimum Flow Rates per Trace",'\n', min_flow_rates)
 
 # Three smallest values:
-#three_min = stress_test['Trace1'].nsmallest(3)
+#three_min = ensemble['Trace1'].nsmallest(3)
 ###print("Three Most Minimum Flow Rates per Trace:","\n", three_min)
 
 # Average flow per Trace
-#avg_flow_rates = stress_test['Trace1'].mean()
+#avg_flow_rates = ensemble['Trace1'].mean()
 #Display average flow per Trace
 ###print("Average Flow Rates per Trace",'\n', avg_flow_rates)
 
 # Three Consecutive Minimum Hydrologic Flows
-Trace1 = stress_test['Trace1'] # Simplify to call Trace1 easier.
+Trace1 = ensemble['Trace1'] # Simplify to call Trace1 easier.
 
 minList = [] # Creates a list to store and work with minimum consecutive sums of Trace1
 
