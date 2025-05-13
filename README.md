@@ -1,5 +1,5 @@
 # ImmersiveModelLakeMead
-This code identifies the three lowest consecutive values within each trace and ensemble from HydrologyScenarios (Salehabadi, 2023).
+This code identifies the three lowest consecutive values within each trace and ensemble from HydrologyScenarios (Salehabadi, 2023). The results of this code was used to create scenarios of extreme low inflow to Lake Mead.
 ## HydrologyScenarios.xlsx
 This excel sheet, created by Homa Salehabadi, shows inflow values to Lee's Ferry for differing hydrolog scenarios. Values from these ensembles and traces were used in the ImmersiveModelLakeMead code.
 ## MinimumResultsHydrologicScenarios.xlsx
