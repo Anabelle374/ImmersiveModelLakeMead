@@ -7,7 +7,7 @@ This excel sheet with the calculated three lowest consecutive values from each e
 ## Min_Code
 ### MinimumHydrologicScenarios.py
 This is documentation of code used to calculate the three most minimum values of each trace in each ensemble from HydrologicScenarios.xlsx. The overall minimum three consecutive values of each ensemble are also calculated by the code. Ensemble is chosen to be calculated by user input.
-### Individual Ensemble
+### Individual Ensembles
 There is no user input required to run this code, but the specific code file must be run to get the results from the specific ensemble.
 
 
