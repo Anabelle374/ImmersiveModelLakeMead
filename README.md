@@ -10,5 +10,4 @@ First, this code takes the specified input stated above and reads the input. The
 ### Software Needed
 The software needed to reproduce these results are, Microsoft Excel, and PyCharm.
 ### Contact Information
-Anabelle Myers
-email: A02369941@aggies.usu.edu
+Author: Anabelle Myers. email: A02369941@aggies.usu.edu.
