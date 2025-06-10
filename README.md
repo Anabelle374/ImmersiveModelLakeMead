@@ -25,5 +25,5 @@ To reproduce the results for MinimumThreeHydrologyScenariosCode, follow the dire
 10. To reproduce results for MinimumFourHydrologyScenariosCode and MinimumFiveHydrologyScenariosCode, follow steps follow steps 1-9, but use the desired code in place of MinimumThreeHydrologyScenariosCode.
 ## Contact Information
 ### Authors
-#### Anabelle Myers. email: A02369941@aggies.usu.edu.
-#### David E. Rosenberg. email: david.rosenberg@usu.edu
+#### Anabelle Myers. Email: A02369941@aggies.usu.edu.
+#### David E. Rosenberg. Email: david.rosenberg@usu.edu
