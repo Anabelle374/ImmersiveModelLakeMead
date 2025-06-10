@@ -7,7 +7,7 @@ This excel workbook, created by Homa Salehabadi using different hydrologic scena
 ## Software Needed
 The software applications needed to reproduce these results are Microsoft Excel, and PyCharm.
 ## Output
-Two different excel workbooks were written with the results from two slightly different python code. The output shows three or five overall consecutive minimum values from each ensemble from the input.
+Three different excel workbooks were written with the results from three slightly different python code. The output shows three, four, or five overall consecutive minimum values from each ensemble from the input. These results are written from the Python code into Excel workbooks.
 ## Reproducibility
 To reproduce the results for MinimumThreeHydrologyScenariosCode, follow the directions below.
 1. Install Microsoft Excel and Pycharm.
