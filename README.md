@@ -24,4 +24,6 @@ To reproduce the results for MinimumThreeHydrologyScenariosCode, follow the dire
 9. The results will be stored in a created excel file in the output path specified above.
 10. To reproduce results for MinimumFourHydrologyScenariosCode and MinimumFiveHydrologyScenariosCode, follow steps follow steps 1-9, but use the desired code in place of MinimumThreeHydrologyScenariosCode.
 ### Contact Information
-Author: Anabelle Myers. email: A02369941@aggies.usu.edu.
+Authors
+Anabelle Myers. email: A02369941@aggies.usu.edu.
+David E. Rosenberg. email: david.rosenberg@usu.edu
