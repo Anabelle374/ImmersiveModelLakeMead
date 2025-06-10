@@ -1,14 +1,27 @@
 # ImmersiveModelLakeMead
 This code identifies three, four,and five lowest consecutive annual scenarios of natural inflow to Lake Powell. These values are pulled out from the traces and ensembles in the HydrologyScenarios.xlsx file (Salehabadi, 2023). The results of this code are used to create scenarios of extreme low inflow to Lake Mead.
-
+## Description of Contents
+The HydrologyScenarios.xlsx is the input for all three codes. A furthur description can be found below in the Input section. The file "ThreeMinimumHydrologyScenarios" includes the code used to find the the three most minimum consecutive values in each ensemble in the input. The results of this code are in this folder. Two near identical folders, "FourMinimumHydrologyScenarios" and "FiveMinimumHydrologyScenarios" include similar contents. "FourMinimumHydrologyScenarios" contains code and results for four most minimum consecutive values in each ensemble and "FiveMinimumHydrologyScenarios" contains code and results for five most minimum cosecutive values in each ensemble.
 ## Input
 This excel workbook, created by Homa Salehabadi using different hydrologic scenarios, shows inflow values to Lee's Ferry for differing hydrologic scenarios. Values from these ensembles and traces were used as input to the ImmersiveModelLakeMead code.
+## Software Needed
+The software applications needed to reproduce these results are Microsoft Excel, and PyCharm.
 ## Output
 Two different excel workbooks were written with the results from two slightly different python code. The output shows three or five overall consecutive minimum values from each ensemble from the input.
-## Code
-The ImmersiveModelLakeMead code is run in this order:
-First, this code takes the specified input stated above and reads the input. Then sheets that do not contain hydrologic scenarios are specified to exclude. Next, an empty list stores the overall minimum of each ensemble of the upcoming loop. A for loop assigns an ensemble sheet to use for each loop. The ensemble is met with a condition to ensure the ensemble is not listed as an excluded ensemble. Next, the ensemble is converted to numeric values. Initial variables are created, so values found can be stored in these variables. Then, each value in each trace in the ensemble is iterated through to find the three or five most minimum consecutive values. The minimum sum is found, then the overall minimum sum of the traces in the ensemble is found and stored. Each value in the list and the start position is found. The values are then stored in varibales. The results are then exported and written into excel in a table.
-### Software Needed
-The software applications needed to reproduce these results are Microsoft Excel, and PyCharm.
+## Reproducibility
+To reproduce the results for MinimumThreeHydrologyScenariosCode, follow the directions below.
+1. Install Microsoft Excel and Pycharm.
+2. Download HydrologicScenarios.xlsx
+3. Open MinimumThreeHydrologyScenariosCode with Pycharm.
+4. Select a Python interpreter.
+5. Open settings in Pycharm.
+   a. Select "Project:MinimumThreeHydrologyScenariosCode", "Python Interpreter", then "+".
+   b. In the search bar, type, "pandas". Select "pandas" then Install Package.
+   c. Repeat step 5b. with "openpyxl" instead of "pandas".
+6. Change the value for "excel_path" to the path were HydrologyScenarios.xlsx is stored.
+7. Change the value for "output_path" to desired results path.
+8. Click the play arrow to run the code.
+9. The results will be stored in a created excel file in the output path specified above.
+10. To reproduce results for MinimumFourHydrologyScenariosCode and MinimumFiveHydrologyScenariosCode, follow steps follow steps 1-9, but use the desired code in place of MinimumThreeHydrologyScenariosCode.
 ### Contact Information
 Author: Anabelle Myers. email: A02369941@aggies.usu.edu.
