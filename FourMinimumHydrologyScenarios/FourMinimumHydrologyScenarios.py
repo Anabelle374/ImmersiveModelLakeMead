@@ -1,3 +1,18 @@
+# MinimumFourHydrologyScenariosCode.py
+#
+#################
+
+# Please report bugs/feedback to: Anabelle Myers A02369941@aggies.usu.edu
+
+# Updated May 21, 2025 to iterate through all ensembles.
+
+# Anabelle G. Myers
+# June 24, 2025
+
+# Utah State University
+#A02369941@aggies.usu.edu
+####################
+
 import pandas as pd
 import openpyxl
 from openpyxl.worksheet.table import Table, TableStyleInfo

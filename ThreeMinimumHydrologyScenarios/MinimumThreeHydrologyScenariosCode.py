@@ -1,26 +1,16 @@
 # MinimumThreeHydrologyScenariosCode.py
 #
-### ##############
-# Change below appropriate for this code file.
-# Make stacked bar graph of state Intentionally Created Surplus holdings by year
-#
-# Data is USBR Water Accounting Reports: https://www.usbr.gov/lc/region/g4000/wtracct.html in source Excel file
-# Please report bugs/feedback to:
-#
-# Updated June 23, 2020 to include annual deposits and withdraws as year-to-year differnces
-#
-# Updated April 4, 2021 to look at ICS to DCP conversion
+#################
 
-# Updated June 10, 2021 to include 2020 data.
+# Please report bugs/feedback to: Anabelle Myers A02369941@aggies.usu.edu
 
-# Updated September 11, 2023 to include 2021 and 2022 data
+# Updated May 21, 2025 to iterate through all ensembles.
 
-#
-# David E. Rosenberg
-# September 11, 2023
-# 
+# Anabelle G. Myers
+# June 24, 2025
+
 # Utah State University
-# david.rosenberg@usu.edu
+#A02369941@aggies.usu.edu
 ####################
 
 # Interpreters
