@@ -2,6 +2,11 @@
 #
 #################
 
+# Purpose
+# This code iterates through all ensembles and traces in HydrologyScenarios.xlsx
+#   by Homa Salehabadi (2023). During the iterations, the code finds the most minimum
+#   three consecutive values of each ensemble.
+
 # Please report bugs/feedback to: Anabelle Myers A02369941@aggies.usu.edu
 
 # Updated May 21, 2025 to iterate through all ensembles.
