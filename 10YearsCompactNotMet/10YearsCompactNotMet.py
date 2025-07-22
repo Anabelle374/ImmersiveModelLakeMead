@@ -1,18 +1,16 @@
-# MinimumFiveHydrologyScenariosCode.py
+# 10YearsCompactNotMet.py
 #
 #################
 
 # Purpose
 # This code iterates through all ensembles and traces in HydrologyScenarios.xlsx
-#   by Homa Salehabadi (2023). During the iterations, the code finds the most minimum
-#   five consecutive values of each ensemble.
+#   by Homa Salehabadi (2023). During the iterations, the code finds 10 consecutive
+#   years where the sum is less than 75 maf
 
 # Please report bugs/feedback to: Anabelle Myers A02369941@aggies.usu.edu
 
-# Updated May 21, 2025 to iterate through all ensembles.
-
 # Anabelle G. Myers
-# June 24, 2025
+# July 22, 2025
 
 # Utah State University
 #A02369941@aggies.usu.edu
@@ -32,7 +30,7 @@ excluded_sheets = [
     "AvailableMetrics", "MetricsForAnalysis", "HeatMap", "Hist"
 ]
 
-# Empty list to collect the overall minimum of each ensemble
+# Empty list to collect consecutive groups of 10 than sum to less than 75
 all_results = []
 
 # Assigns ensemble_input to each sheet individually for each time the code is looped
@@ -72,7 +70,7 @@ for ensemble_input in sheet_names:
             all_results.append({
                 'Ensemble': ensemble_input,
                 'Trace': y,
-                'Start Row': trace_fail_pos + 1,
+                'Start Row': trace_fail_pos + 2,
                 'First': round(first, 1),
                 'Second': round(second, 1),
                 'Third': round(third, 1),
@@ -92,9 +90,9 @@ df = pd.DataFrame(all_results)
 # Write results to a single-sheet Excel file with a table
 output_path = '/Users/anabelle/Documents/GitHub/ImmersiveModelLakeMead/10YearsCompactNotMet/10YearsCompactNotMetResults.xlsx'
 with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
-    df.to_excel(writer, sheet_name='Ensemble Fails', index=False)
+    df.to_excel(writer, sheet_name='Compact Not Met', index=False)
     workbook = writer.book
-    worksheet = writer.sheets['Ensemble Fails']
+    worksheet = writer.sheets['Compact Not Met']
 
     # Define Excel table
     end_col = chr(65 + len(df.columns) - 1)
