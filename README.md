@@ -18,8 +18,8 @@ To reproduce the results for MinimumThreeHydrologyScenariosCode, follow the dire
    a. Select "Project:MinimumThreeHydrologyScenariosCode", "Python Interpreter", then "+".
    b. In the search bar, type, "pandas". Select "pandas" then "Install Package".
    c. Repeat step 5b. with "openpyxl" instead of "pandas".
-6. Change the value for "excel_path" to the path were HydrologyScenarios.xlsx is stored.
-7. Change the value for "output_path" to desired path to an excel book.
+6. Change the value for "excel_path" to the path were HydrologyScenarios.xlsx is stored. Ensure all back slashes are changed to forward slashes and that 'C:' is deleted.
+7. Change the value for "output_path" to desired path to an excel book. Ensure all back slashes are changed to forward slashes and that 'C:' is deleted.
 8. Click the play arrow to run the code.
 9. The results will be stored in a created excel file in the output path specified above.
 10. To reproduce results for MinimumFourHydrologyScenariosCode and MinimumFiveHydrologyScenariosCode, follow steps follow steps 1-9, but use the desired code in place of MinimumThreeHydrologyScenariosCode.
