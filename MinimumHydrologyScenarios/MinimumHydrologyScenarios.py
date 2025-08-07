@@ -5,14 +5,13 @@
 # Purpose
 # This code iterates through all ensembles and traces in HydrologyScenarios.xlsx
 #   by Homa Salehabadi (2023). During the iterations, the code finds the most minimum
-#   three consecutive values of each ensemble.
+#   consecutive years. The user chooses the window.
 
 # Please report bugs/feedback to: Anabelle Myers A02369941@aggies.usu.edu
 
-# Updated May 21, 2025 to iterate through all ensembles.
 
 # Anabelle G. Myers
-# June 24, 2025
+# August 6, 2025
 
 # Utah State University
 #A02369941@aggies.usu.edu
@@ -23,10 +22,10 @@ import pandas as pd
 import openpyxl
 from openpyxl.worksheet.table import Table, TableStyleInfo
 
-value = int(input("Enter the number of consecutive values over which to calculate the minimum of each ensemble: "))
+year = int(input("Enter the number of consecutive years over which to calculate the minimum of each ensemble: "))
 
 # Input
-excel_path = '/Users/anabelle/Documents/GitHub/ImmersiveModelLakeMead/HydrologyScenarios.xlsx'  # Path to HydrologyScenarios.xlsx
+excel_path = 'ImmersiveModelLakeMead/HydrologyScenarios.xlsx'  # Path to HydrologyScenarios.xlsx
 sheet_names = pd.ExcelFile(excel_path).sheet_names  # Variable for ease of access to all the sheets in HydrologyScenarios.xlsx.
 
 # Specifies which sheets not to read.
@@ -48,25 +47,25 @@ for ensemble_input in sheet_names:  # Iterates through ensembles
     ensemble = pd.read_excel(excel_path, sheet_name=ensemble_input)  # Reads and skips ensemble if in excluded list
     ensemble = ensemble.apply(pd.to_numeric, errors='coerce')  # Converts to a DataFrame
 
-    # Initialize variables to find and store minimum values
+    # Initialize variables to find and store minimum years
     overall_min = float('inf')
     overall_trace = None
     overall_pos = None
 
     count_traces = 0
 
-    # Searches for the overall minimum sum of consecutive values
+    # Searches for the overall minimum sum of consecutive years
     for trace in ensemble.columns[1:]:  # Iterates through each trace in the ensemble
         series = ensemble[trace]  # Isolates one column to be iterated through
-        rollingSum = series.rolling(window=value).sum()  # Calculates sum of a rolling window
+        rollingSum = series.rolling(window=year).sum()  # Calculates sum of a rolling window
         valid = rollingSum.dropna()  # Drops NaN values to calculate only full windows
 
         if valid.empty:
             continue
 
         end_idx = int(valid.idxmin())  # Finds position of minimum rolling window
-        minimum = valid.min()  # Finds the value of the rolling sum
-        start_idx = end_idx - (value - 1)  # Finds the position of the start of the window
+        minimum = valid.min()  # Finds the years of the rolling sum
+        start_idx = end_idx - (year - 1)  # Finds the position of the start of the window
 
         # Stores the most minimum sum information until an even smaller sum occurs
         if minimum < overall_min:
@@ -81,8 +80,8 @@ for ensemble_input in sheet_names:  # Iterates through ensembles
     count_ensembles += 1
 
     if overall_trace is not None:
-        window = ensemble[overall_trace].iloc[overall_start : overall_start + value].reset_index(drop=True)  # Extracts values from the rolling sum window
-        average = round(overall_min / value, 1)
+        window = ensemble[overall_trace].iloc[overall_start : overall_start + year].reset_index(drop=True)  # Extracts years from the rolling sum window
+        average = round(overall_min / year, 1)
 
         # Stores results into variables
         result = {
@@ -93,7 +92,7 @@ for ensemble_input in sheet_names:  # Iterates through ensembles
         }
 
         for i in range(len(window)):  # Assigns results to correct title to store into Excel columns
-            result[f'Value{i + 1}'] = round(window.iloc[i], 1)
+            result[f'Year{i + 1}'] = round(window.iloc[i], 1)
 
         all_results.append(result)  # Adds results to the list of all results
 
