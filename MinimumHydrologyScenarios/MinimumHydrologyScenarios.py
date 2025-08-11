@@ -28,13 +28,13 @@ from openpyxl import Workbook
 year = int(input("Enter the number of consecutive years over which to calculate the minimum of each ensemble: "))
 
 # Input
-code_folder = Path(__file__).parent # Locates code
-parent_folder = code_folder.parent # Locates parent folder
-input_file = parent_folder / 'HydrologyScenarios.xlsx' # Shows where the input is relative to where the code is
+code_file = Path(__file__).parent # Locates code
+MinimumHydrologyScenarios = code_file.parent # Locates parent folder
+input_file = MinimumHydrologyScenarios / 'HydrologyScenarios.xlsx' # Shows where the input is relative to where the code is
 
 # Output
-output_file = f"{year}yearsMinimumHydrologyResults.xlsx" # Output path relative to where code is
-output_path = code_folder / output_file  # Shows where the output is relative to where the code is
+output_file = f"{year}yearsMinimumHydrologyResults.xlsx" # Names output a unique name
+output_path = code_file / 'Results' / output_file   # Shows where the output is relative to where the code is
 
 sheet_names = pd.ExcelFile(input_file).sheet_names  # Variable for ease of access to all the sheets in HydrologyScenarios.xlsx
 
@@ -57,7 +57,7 @@ for ensemble_input in sheet_names:  # Iterates through ensembles
 
     # Reads and converts values in ensembles to numeric values
     ensemble = pd.read_excel(input_file, sheet_name=ensemble_input)  # Selects a specific sheet and converts it into a DataFrame
-    ensemble = ensemble.apply(pd.to_numeric, errors='coerce')  # Coverts all values into numeric if not already and turns values that cannont be converted int 'NaN'
+    ensemble = ensemble.apply(pd.to_numeric, errors='coerce')  # Coverts all values into numeric if not already and turns values that cannot be converted int 'NaN'
 
     # START TRACE LOOP
     # Start ISM trace loop
