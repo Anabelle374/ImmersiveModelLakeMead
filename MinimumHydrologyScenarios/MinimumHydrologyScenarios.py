@@ -11,7 +11,7 @@
 
 
 # Anabelle G. Myers
-# August 6, 2025
+# August 11, 2025
 
 # Utah State University
 #A02369941@aggies.usu.edu
@@ -21,102 +21,132 @@
 import pandas as pd
 import openpyxl
 from openpyxl.worksheet.table import Table, TableStyleInfo
+from pathlib import Path
+from openpyxl import Workbook
+
 
 year = int(input("Enter the number of consecutive years over which to calculate the minimum of each ensemble: "))
 
 # Input
-excel_path = 'ImmersiveModelLakeMead/HydrologyScenarios.xlsx'  # Path to HydrologyScenarios.xlsx
-sheet_names = pd.ExcelFile(excel_path).sheet_names  # Variable for ease of access to all the sheets in HydrologyScenarios.xlsx.
+code_folder = Path(__file__).parent # Locates code
+parent_folder = code_folder.parent # Locates parent folder
+input_file = parent_folder / 'HydrologyScenarios.xlsx' # Shows where the input is relative to where the code is
 
-# Specifies which sheets not to read.
+# Output
+output_file = f"{year}yearsMinimumHydrologyResults.xlsx" # Output path relative to where code is
+output_path = code_folder / output_file  # Shows where the output is relative to where the code is
+
+sheet_names = pd.ExcelFile(input_file).sheet_names  # Variable for ease of access to all the sheets in HydrologyScenarios.xlsx
+
+# Specifies which sheets not to read
 excluded_sheets = ["ReadMe", "AvailableHydrologyScenarios", "ScenarioListForAnalysis", "AvailableMetrics", "MetricsForAnalysis", "Heatmap", "Hist"]
 
-# Empty list to collect the overall minimum of each ensemble calculated from the for loops.
+# Empty list to collect the minimum years window of trace calculated from the for loops
 all_results = []
 
+# Counter initializers and storages
 count_ensembles = 0
 all_traces = []
-total_traces = 0
 
-# Assigns ensemble_input to each sheet individually for each time the code is looped
+# START ENSEMBLE LOOP
 for ensemble_input in sheet_names:  # Iterates through ensembles
     if ensemble_input in excluded_sheets:  # Skips over sheets listed in excluded_sheets
         continue
 
+    count_ensembles += 1 # Increases count by one each time the ensemble for loop is iterated through
+
     # Reads and converts values in ensembles to numeric values
-    ensemble = pd.read_excel(excel_path, sheet_name=ensemble_input)  # Reads and skips ensemble if in excluded list
-    ensemble = ensemble.apply(pd.to_numeric, errors='coerce')  # Converts to a DataFrame
+    ensemble = pd.read_excel(input_file, sheet_name=ensemble_input)  # Selects a specific sheet and converts it into a DataFrame
+    ensemble = ensemble.apply(pd.to_numeric, errors='coerce')  # Coverts all values into numeric if not already and turns values that cannont be converted int 'NaN'
 
-    # Initialize variables to find and store minimum years
-    overall_min = float('inf')
-    overall_trace = None
-    overall_pos = None
+    # START TRACE LOOP
+    # Start ISM trace loop
+    if 'ISM' in ensemble_input: # Selects ensembles with 'ISM' in the title
 
-    count_traces = 0
+        count_ismtraces = 0 # Count initializer for ISM traces
 
+        # Searches for the overall minimum sum of consecutive years
+        for ism_trace in ensemble.columns[1:2]:  # Iterates through the first trace in each ISM ensemble
+            series = ensemble[ism_trace]  # Isolates the trace and attaches it to a variable
+            doubled = pd.concat([series, series], ignore_index = True) # Duplicates and vertically stacks the ISM trace
+            rollingSum = series.rolling(window=year).sum()  # Calculates sum of a rolling window
+            valid = rollingSum.dropna()  # Drops NaN values to calculate only full windows
+
+            end_idx = int(valid.idxmin())  # Finds the row of minimum rolling window and converts to an integer
+            start_idx = end_idx - (year - 1)  # Finds the position of the start of the window based off of the end
+
+            window = series.iloc[start_idx: start_idx + year].reset_index(drop=True)  # Extracts called window
+            average = round(window.mean(), 1) # Calculated average
+
+            # Stores results into a dictionary
+            ism_result = {
+                'Ensemble': ensemble_input,
+                'Trace': ism_trace,
+                'Start Row': start_idx + 1,
+                'Average': average
+            }
+            for i in range(len(window)):  # Assigns results to correct title to store into Excel columns
+                ism_result[f'Year{i + 1}'] = round(window.iloc[i], 1)
+
+            all_results.append(ism_result) # Adds ISM results to all results
+            count_ismtraces += 1 # Increases count of iterations through ISM traces
+
+        all_traces.append(count_ismtraces) # Adds ISM iterations count to the total iteration trace count
+        continue # Forces to move to the next ensemble
+    # End ISM trace loop
+
+    # Start all other traces loop
+    count_traces = 0 # Count initializer for iterations through the rest of the traces
     # Searches for the overall minimum sum of consecutive years
     for trace in ensemble.columns[1:]:  # Iterates through each trace in the ensemble
         series = ensemble[trace]  # Isolates one column to be iterated through
         rollingSum = series.rolling(window=year).sum()  # Calculates sum of a rolling window
         valid = rollingSum.dropna()  # Drops NaN values to calculate only full windows
 
-        if valid.empty:
-            continue
+        end_idx = int(valid.idxmin())  # Finds end position of minimum rolling window
+        start_idx = end_idx - (year - 1)  # Finds the position of the start of the window based on the end
 
-        end_idx = int(valid.idxmin())  # Finds position of minimum rolling window
-        minimum = valid.min()  # Finds the years of the rolling sum
-        start_idx = end_idx - (year - 1)  # Finds the position of the start of the window
+        window = series.iloc[start_idx: start_idx + year].reset_index(drop=True)  # Extracts called window
+        average = round(window.mean(), 1)
 
-        # Stores the most minimum sum information until an even smaller sum occurs
-        if minimum < overall_min:
-            overall_min = minimum
-            overall_trace = trace
-            overall_start = start_idx
-
-        count_traces += 1
-
-    all_traces.append(count_traces)
-    total_traces += count_traces
-    count_ensembles += 1
-
-    if overall_trace is not None:
-        window = ensemble[overall_trace].iloc[overall_start : overall_start + year].reset_index(drop=True)  # Extracts years from the rolling sum window
-        average = round(overall_min / year, 1)
-
-        # Stores results into variables
+        # Stores results into a dictionary
         result = {
             'Ensemble': ensemble_input,
-            'Trace': overall_trace,
-            'Start Row': overall_start + 1,
+            'Trace': trace,
+            'Start Row': start_idx + 1,
             'Average': average
-        }
+            }
 
         for i in range(len(window)):  # Assigns results to correct title to store into Excel columns
             result[f'Year{i + 1}'] = round(window.iloc[i], 1)
 
         all_results.append(result)  # Adds results to the list of all results
-
+        count_traces += 1 # Increases count of iterations through all other traces
+        # End all other traces loop
+        # END TRACE LOOP
+    all_traces.append(count_traces) # Adds the count of iterations through all other traces to the total iteration count
+# END ENSEMBLE LOOP
 
 # Convert to DataFrame
-df = pd.DataFrame(all_results)
+df = pd.DataFrame(all_results) # Puts all_results into a DataFrame
+df = df.sort_values(by='Average', ascending=True).reset_index(drop=True) # Sorts the averages and outputs to Excel in this order. Resets the index, so rows are correct.
 
 # Write results to a single-sheet Excel file with a table
-output_path = '/Users/anabelle/Documents/GitHub/ImmersiveModelLakeMead/MinimumHydrologyScenarios/MinimumHydrologyResults.xlsx'
 with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
-    df.to_excel(writer, sheet_name='Ensemble Minimums', index=False)
-    workbook = writer.book
-    worksheet = writer.sheets['Ensemble Minimums']
+    df.to_excel(writer, sheet_name='Ensemble Minimums', index=False) # Adds DataFrame to a named sheet
+    workbook = writer.book # Accesses the workbook
+    worksheet = writer.sheets['Ensemble Minimums'] # Accesses the worksheet
 
-    end_col = chr(65 + len(df.columns) - 1)
-    end_row = len(df) + 1
-    table_range = f"A1:{end_col}{end_row}"
+    end_col = chr(65 + len(df.columns) - 1) # Calculates column letter
+    end_row = len(df) + 1 # Calculate row number
+    table_range = f"A1:{end_col}{end_row}" # Creates Excel range
 
-    table = Table(displayName="MinPerEnsemble", ref=table_range)
-    style = TableStyleInfo(name="TableStyleMedium9", showRowStripes=True)
+    table = Table(displayName="MinPerEnsemble", ref=table_range) # Creates table
+    style = TableStyleInfo(name="TableStyleMedium9", showRowStripes=True) # Creates table style
     table.tableStyleInfo = style
-    worksheet.add_table(table)
+    worksheet.add_table(table) # adds table to the worksheet
 
-# Displays path to output
-print(f"\nResults saved to:\n{output_path}")
 
-print("\nThe code iterated through", count_ensembles, "ensembles and", sum(all_traces), "traces.")
+print(f"\nResults saved to:\n{output_path}") # Displays output path
+
+print("\nThe code iterated through", count_ensembles, "ensembles and", sum(all_traces), "traces.") # Displays number of iterations through ensembles and traces
