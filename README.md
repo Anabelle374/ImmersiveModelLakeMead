@@ -5,8 +5,8 @@ These values are pulled out from the traces and ensembles in the HydrologyScenar
 The results of this code are used to create scenarios of extreme low inflow to Lake Mead.
 
 ## Description of Contents
-**HydrologyScenarios.xlsx** is the input for all three codes. This workbook comes from Salehabadi et al, 2024). A furthur description can be found below in the Input section. 
-**MinimumHydrologyScenarios** - Folder  contains the Python code (MinimumHydrologyScenarios.py) used to find 3-, 4-, and 10-year minimum flows
+**HydrologyScenarios.xlsx** is the input for all three codes. This workbook comes from Salehabadi et al, 2024). A furthur description can be found below in the Input section.
+**MinimumHydrologyScenarios** - Folder  contains the Python code (MinimumHydrologyScenarios.py) used to find 3-, 4-, and 10-year minimum flows.
 **Old** - Folder with older versions of Python code.
 **MinimumHydrologyScenarios/Results** - Subfolder that contains results in Excel files, e.g., **3yearsMinimumHydrologyResults.xlsx**.
 
