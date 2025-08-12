@@ -1,18 +1,26 @@
-# ImmersiveModelLakeMead
-The purpose of this python code is to find the lowest flow rate sum of consecutive years using data from the Excel workbook 'HydrologyScenarios' (Salehabadi, 2023). The results of this code are used to create scenarios of extreme low inflow to Lake Mead.
+# Supporting Extreme Low Reservoir Infows for Immersive Model for Lake Mead
+This code identifies periods of three-, four-, and 10-year extreme low natural flow at Lee Ferry. 
+The code also identifies when the rolling sum of ten consecutive values sums to less than 75 million acre-feet (maf).
+These values are pulled out from the traces and ensembles in the HydrologyScenarios.xlsx file (Salehabadi, 2024).
+The results of this code are used to create scenarios of extreme low inflow to Lake Mead.
+
 ## Description of Contents
-### Input (HydrologyScenarios.xlsx)
-The Excel workbook 'HydrologyScenarios' (Salehabadi, 2023) shows inflow values to Lee's Ferry for differing hydrologic scenarios. Values from these ensembles and traces were used as input to the MinimumHydrologyScenarios.py code.
+**HydrologyScenarios.xlsx** is the input for all three codes. This workbook comes from Salehabadi et al, 2024). A furthur description can be found below in the Input section. 
+**MinimumHydrologyScenarios** - Folder  contains the Python code (MinimumHydrologyScenarios.py) used to find 3-, 4-, and 10-year minimum flows
+**Old** - Folder with older versions of Python code.
+**MinimumHydrologyScenarios/Results** - Subfolder that contains results in Excel files, e.g., **3yearsMinimumHydrologyResults.xlsx**.
+
 ### Code (MinimumHydrologyScenarios / MinimumHydrologyScenarios.py)
 First the code takes user input to define the number of consecutive years to use for calculations. Then the window and flow rates of the minimum consecutive years are found for every trace in every ensemble. The ensembles with 'ISM' in the title only iterates through one trace. This trace is duplicated and vertically stacked then the minimum consecutive years window sum is calculated. The ensemble title, trace title, starting position, and average for the windows are stored and outputted to Excel. In-depth descriptions can be found in the comments in the script.
 Notes: Only one trace in the 'ISM' ensembles are calculated because the 'ISM' traces have the same data in the same order, but offset by one cell. Doing this rids the results of redundant data. 
+
 ### Output (MinimumHydrologyScenarios / Results / 'X'yearsMinimumHydrologyResults.xlsx)
 The results for the minimum consecutive years are stored in Excel files in the 'Results' folder located in the 'MinimumHydrologyScenarios' folder. 'X' represents the number of consecutive years the user chooses. The results only are overwritten when the user chooses the same number.
-### Old
-The HydrologyScenarios.xlsx is the input for all three codes. A furthur description can be found below in the Input section. The folder "ThreeMinimumHydrologyScenarios" contains the code used to find the the three most minimum consecutive values in each ensemble in the input. The results of this code can be found in the same folder. Two near identical folders, "FourMinimumHydrologyScenarios" and "FiveMinimumHydrologyScenarios" include similar contents. "FourMinimumHydrologyScenarios" contains code and results for four most minimum consecutive values in each ensemble and "FiveMinimumHydrologyScenarios" contains code and results for five most minimum cosecutive values in each ensemble. The folder "10YearsCompactNotMet" contains code used to find ten cosecutive values that sums to less than 75 maf. 
-## Software Needed
+
+## Directions to Reproduce Results
+### Software Needed
 The software applications needed to reproduce these results are Microsoft Excel, and PyCharm.
-## Reproducibility
+### Reproducibility
 To reproduce the results for MinimumHydrologyScenarios.py, follow the directions below.
 1. Install Microsoft Excel.
 - Search 'https://excel.cloud.microsoft/' in a search engine.
@@ -49,7 +57,12 @@ To reproduce the results for MinimumHydrologyScenarios.py, follow the directions
 9. Click the green play arrow at the top of the page.
 10. Follow the directions at the bottom of the page.
 11. The results will be stored in a created excel file in the 'Results' folder in the 'MinimumHydrologySenarios' folder.
+
 ## Contact Information
 ### Authors
 #### Anabelle Myers. Email: A02369941@aggies.usu.edu.
 #### David E. Rosenberg. Email: david.rosenberg@usu.edu
+
+## Requested Citation
+Myers, Anabelle (2025). "Supporting Extreme Low Reservoir Infows for Immersive Model for Lake Mead." Github. https://github.com/Anabelle374/ImmersiveModelLakeMead.
+
