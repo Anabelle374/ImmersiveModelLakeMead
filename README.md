@@ -3,7 +3,7 @@ The purpose of this python code is to find the lowest flow rate sum of consecuti
 ## Description of Contents
 ### Input (HydrologyScenarios.xlsx)
 The Excel workbook 'HydrologyScenarios' (Salehabadi, 2023) shows inflow values to Lee's Ferry for differing hydrologic scenarios. Values from these ensembles and traces were used as input to the MinimumHydrologyScenarios.py code.
-### Code (MinimumHydrologyScenarios / MinimumHydrologyScenarios.py
+### Code (MinimumHydrologyScenarios / MinimumHydrologyScenarios.py)
 First the code takes user input to define the number of consecutive years to use for calculations. Then the window and flow rates of the minimum consecutive years are found for every trace in every ensemble. The ensembles with 'ISM' in the title only iterates through one trace. This trace is duplicated and vertically stacked then the minimum consecutive years window sum is calculated. The ensemble title, trace title, starting position, and average for the windows are stored and outputted to Excel. In-depth descriptions can be found in the comments in the script.
 Notes: Only one trace in the 'ISM' ensembles are calculated because the 'ISM' traces have the same data in the same order, but offset by one cell. Doing this rids the results of redundant data. 
 ### Output (MinimumHydrologyScenarios / Results/ 'X'yearsMinimumHydrologyResults.xlsx)
