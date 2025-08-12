@@ -27,36 +27,36 @@ To reproduce the results for MinimumHydrologyScenarios.py, follow the directions
 - Sign in or create an account.
 - If Excel is not purchased, follow Microsofts provided instructions to purchase Excel.
 - Open Excel and sign in.
-3. Install Python.
+2. Install Python.
 - Search 'https://www.python.org/' in a search engine.
 - Scroll down to the 'Download' section and click the latest Python version.
 - Scroll down to the 'Files' section.
 - Read the 'Description' column in the table, choose the best description for the device in use, then follow the row to the left to the 'Version' column and click on the installer option.
 - Go to the device's downloads and find the installer chosen in step 2d.
 - Click on the installer and follow the directions.
-4. Install Pycharm
+3. Install Pycharm
 - Search 'https://www.jetbrains.com/pycharm/' in a search engine.
 - Select 'Download'.
 - Ensure the .dmg is correct for the device in use, then select 'Download'.
 - Go to the device's downloads and find the installer chosen in step 3c.
 - Select the installer and follow the directions.
-5. Download this repository.
+4. Download this repository.
 - Scroll to the top of this page and select 'Code'.
 - Select 'Download ZIP'.
 - Go to the device's downloads and select 'ImmersiveModelLakeMead-main'. This will unzip the file.
-6. Open the Python script.
+5. Open the Python script.
 - In the 'ImmersiveModelLakeMead-main' file, select the folder 'MinimumHydrologyScenarios'.
 - Open 'MinimumHydrologyScenarios.py' with Pycharm.
 - Follow the directions.
 - Select 'MinimumHydrologyScenarios.py'.
-7. Select a Python interpreter.
-8. Open settings in Pycharm.
+6. Select a Python interpreter.
+7. Open settings in Pycharm.
 - Select 'Project:MinimumHydrologyScenarios', 'Python Interpreter', then "+".
 - In the search bar, type, 'pandas'. Select 'pandas' then 'Install Package'.
 - Repeat step 5b. with 'openpyxl' instead of 'pandas'.
-9. Click the green play arrow at the top of the page.
-10. Follow the directions at the bottom of the page.
-11. The results will be stored in a created excel file in the 'Results' folder in the 'MinimumHydrologySenarios' folder.
+8. Click the green play arrow at the top of the page.
+9. Follow the directions at the bottom of the page.
+10. The results will be stored in a created excel file in the 'Results' folder in the 'MinimumHydrologySenarios' folder.
 
 ## Contact Information
 ### Authors
