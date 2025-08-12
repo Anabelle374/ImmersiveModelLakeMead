@@ -5,10 +5,10 @@ These values are pulled out from the traces and ensembles in the HydrologyScenar
 The results of this code are used to create scenarios of extreme low inflow to Lake Mead.
 
 ## Description of Contents
-**HydrologyScenarios.xlsx** is the input for all three codes. This workbook comes from Salehabadi et al, 2024). A furthur description can be found below in the Input section.
-**MinimumHydrologyScenarios** - Folder  contains the Python code (MinimumHydrologyScenarios.py) used to find 3-, 4-, and 10-year minimum flows.
-**Old** - Folder with older versions of Python code.
-**MinimumHydrologyScenarios/Results** - Subfolder that contains results in Excel files, e.g., **3yearsMinimumHydrologyResults.xlsx**.
+1. **HydrologyScenarios.xlsx** is the input for all three codes. This workbook comes from Salehabadi et al, 2024). A furthur description can be found below in the Input section.
+1. **MinimumHydrologyScenarios** - Folder  contains the Python code (MinimumHydrologyScenarios.py) used to find 3-, 4-, and 10-year minimum flows.
+1. **Old** - Folder with older versions of Python code.
+1. **MinimumHydrologyScenarios/Results** - Subfolder that contains results in Excel files, e.g., **3yearsMinimumHydrologyResults.xlsx**.
 
 ### Code (MinimumHydrologyScenarios / MinimumHydrologyScenarios.py)
 First the code takes user input to define the number of consecutive years to use for calculations. Then the window and flow rates of the minimum consecutive years are found for every trace in every ensemble. The ensembles with 'ISM' in the title only iterates through one trace. This trace is duplicated and vertically stacked then the minimum consecutive years window sum is calculated. The ensemble title, trace title, starting position, and average for the windows are stored and outputted to Excel. In-depth descriptions can be found in the comments in the script.
