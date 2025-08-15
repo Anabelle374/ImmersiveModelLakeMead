@@ -168,20 +168,17 @@ hist_df = pd.read_csv(csv_path) # Reads input
 # # Shows histogram
 # plt.show()
 
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Generate some sample data (e.g., a normal distribution)
-data = hist_df['Difference']
 
 # Create the histogram
-#plt.hist(data)
+# 12 bins
+# Plot from 0 to -12. X-axis labels as positive 0, 1, 2, 3 ... 12
 
+
+plt.hist(data, bins=20)  # Using 20 bins
 # Add labels and a title
-plt.hist(data, bins=20)  # Using 30 bins
-plt.xlabel("Value")
-plt.ylabel("Frequency")
-plt.title("Histogram of Sample Data")
+plt.xlabel("Annual decrease in flow (million acre-feet per year)")
+plt.ylabel("Percent")
+#plt.title("Histogram of Sample Data")
 
 
 #print(f"Histogram image saved to: {hist_png_path}")
