@@ -183,8 +183,6 @@ plt.xlabel("Value")
 plt.ylabel("Frequency")
 plt.title("Histogram of Sample Data")
 
-# Display the plot
-plt.show()
 
 #print(f"Histogram image saved to: {hist_png_path}")
 
