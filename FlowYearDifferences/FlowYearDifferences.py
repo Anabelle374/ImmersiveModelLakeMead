@@ -94,43 +94,99 @@ csv_path = output_path.with_suffix('.csv')
 narrow_csv = narrow_df.to_csv(csv_path, index=False)
 
 
-## Histogram ##
+# ## Histogram ##
+# hist_df = pd.read_csv(csv_path) # Reads input
+#
+# diffs = narrow_df['Difference'].dropna() # Calls difference column and drops empty values
+#
+# rounded = diffs.round(0).astype(int) # Rounds differences to nearest whole value and converts to integers
+#
+# negatives = rounded[rounded < 0] # Calls only negative integers
+#
+# counts = negatives.value_counts().sort_index() # Counts negative integer occurrences and sorts them
+# x_range = list(range(-20, 0)) # Creates range
+# counts = counts.reindex(x_range, fill_value=0)
+# histogram_df = counts.reset_index() # Creates counted index
+# histogram_df.columns = ['Difference', 'Occurrence'] # Calls histogram data
+#
+# hist_csv_path = output_path.parent / 'Hist_Differences.csv' # Saves histogram path
+# histogram_df.to_csv(hist_csv_path, index=False) #
+#
+# # Creates new figure that is the histogram
+# plt.figure(figsize=(10, 6))
+# plt.bar(histogram_df['Difference'], histogram_df['Occurrence'])
+# plt.xlabel('Year to Year Change in Flow (million acre-feet per year')
+# plt.ylabel('Occurrence')
+# plt.title('Flow Year Differences')
+# plt.xticks(x_range)  # still show -20..-1 ticks (optional)
+# plt.subplots_adjust(left=0.06, right=0.98, top=0.93, bottom=0.12)
+# plt.grid(axis='y', linestyle='--', alpha=0.3)
+# plt.tight_layout()
+#
+# # Saves histogram as a png
+# hist_png_path = output_path.parent / 'FlowYearDifferences_hist.png'
+# plt.savefig(hist_png_path, dpi=300)
+#
+# # Shows histogram
+# plt.show()
+
+
+# # POSITIVE HISTOGRAM
+# ## Histogram ##
 hist_df = pd.read_csv(csv_path) # Reads input
+#
+# diffs = narrow_df['Difference'].dropna() # Calls difference column and drops empty values
+#
+# rounded = diffs.round(0).astype(int) # Rounds differences to nearest whole value and converts to integers
+#
+#  # Calls only positive integers
+#
+# counts = rounded.value_counts().sort_index() # Counts negative integer occurrences and sorts them
+# x_range = list(range(-20, 20)) # Creates range
+# counts = counts.reindex(x_range, fill_value=0)
+# histogram_df = counts.reset_index() # Creates counted index
+# histogram_df.columns = ['Difference', 'Occurrence'] # Calls histogram data
+#
+# hist_csv_path = output_path.parent / 'Hist_Differences.csv' # Saves histogram path
+# histogram_df.to_csv(hist_csv_path, index=False) #
+#
+# # Creates new figure that is the histogram
+# plt.figure(figsize=(10, 6))
+# plt.bar(histogram_df['Difference'], histogram_df['Occurrence'])
+# plt.xlabel('Year to Year Change in Flow (million acre-feet per year)')
+# plt.ylabel('Occurrence')
+# plt.title('Flow Year Differences')
+# plt.xticks(x_range)
+# plt.subplots_adjust(left=0.06, right=0.98, top=0.93, bottom=0.12)
+# plt.grid(axis='y', linestyle='--', alpha=0.3)
+# plt.tight_layout()
+#
+# # Saves histogram as a png
+# hist_png_path_positive = output_path.parent / 'POSTIVEFlowYearDifferences_hist.png'
+# plt.savefig(hist_png_path_positive, dpi=300)
+#
+# # Shows histogram
+# plt.show()
 
-diffs = narrow_df['Difference'].dropna() # Calls difference column and drops empty values
+import matplotlib.pyplot as plt
+import numpy as np
 
-rounded = diffs.round(0).astype(int) # Rounds differences to nearest whole value and converts to integers
+# Generate some sample data (e.g., a normal distribution)
+data = hist_df['Difference']
 
-negatives = rounded[rounded < 0] # Calls only negative integers
+# Create the histogram
+#plt.hist(data)
 
-counts = negatives.value_counts().sort_index() # Counts negative integer occurrences and sorts them
-x_range = list(range(-20, 0)) # Creates range
-counts = counts.reindex(x_range, fill_value=0)
-histogram_df = counts.reset_index() # Creates counted index
-histogram_df.columns = ['Difference', 'Occurrence'] # Calls histogram data
+# Add labels and a title
+plt.hist(data, bins=20)  # Using 30 bins
+plt.xlabel("Value")
+plt.ylabel("Frequency")
+plt.title("Histogram of Sample Data")
 
-hist_csv_path = output_path.parent / 'Hist_Differences.csv' # Saves histogram path
-histogram_df.to_csv(hist_csv_path, index=False) #
-
-# Creates new figure that is the histogram
-plt.figure(figsize=(10, 6))
-plt.bar(histogram_df['Year to Year Change in Flow (million acre-feet per year)'], histogram_df['Occurrence'])
-plt.xlabel('Difference')
-plt.ylabel('Occurrence')
-plt.title('Flow Year Differences')
-plt.xticks(x_range)  # still show -20..-1 ticks (optional)
-plt.subplots_adjust(left=0.06, right=0.98, top=0.93, bottom=0.12)
-plt.grid(axis='y', linestyle='--', alpha=0.3)
-plt.tight_layout()
-
-# Saves histogram as a png
-hist_png_path = output_path.parent / 'FlowYearDifferences_hist.png'
-plt.savefig(hist_png_path, dpi=300)
-
-# Shows histogram
+# Display the plot
 plt.show()
 
-print(f"Histogram image saved to: {hist_png_path}")
+#print(f"Histogram image saved to: {hist_png_path}")
 
 print(f"\nResults saved to:\n{csv_path}")
 
