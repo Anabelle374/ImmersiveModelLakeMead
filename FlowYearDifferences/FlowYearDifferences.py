@@ -114,7 +114,7 @@ histogram_df.to_csv(hist_csv_path, index=False) #
 
 # Creates new figure that is the histogram
 plt.figure(figsize=(10, 6))
-plt.bar(histogram_df['Difference'], histogram_df['Occurrence'])
+plt.bar(histogram_df['Year to Year Change in Flow (million acre-feet per year)'], histogram_df['Occurrence'])
 plt.xlabel('Difference')
 plt.ylabel('Occurrence')
 plt.title('Flow Year Differences')
