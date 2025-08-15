@@ -59,6 +59,7 @@ if columns_series: # Adds all of the columns from the list to the wide data set 
     df_wide = pd.concat([s.rename(c) for c, s in columns_series], axis=1)
 
 # Computes year to year differences and rounds to three decimal points
+# Negative value is a DECREASE in flow from year i to i+1, positive is an INCREASE in flow from year i to i+1.
 difference_df = df_wide.diff().round(3)
 
 # Narrow Flow
