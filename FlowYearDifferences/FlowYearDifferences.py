@@ -172,14 +172,14 @@ hist_df = pd.read_csv(csv_path) # Reads input
 # Create the histogram
 # 12 bins
 # Plot from 0 to -12. X-axis labels as positive 0, 1, 2, 3 ... 12
-
+data = hist_df['Difference']
 
 plt.hist(data, bins=20)  # Using 20 bins
 # Add labels and a title
 plt.xlabel("Annual decrease in flow (million acre-feet per year)")
 plt.ylabel("Percent")
 #plt.title("Histogram of Sample Data")
-
+plt.show()
 
 #print(f"Histogram image saved to: {hist_png_path}")
 
