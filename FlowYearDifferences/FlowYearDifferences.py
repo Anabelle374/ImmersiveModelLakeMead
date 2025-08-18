@@ -3,7 +3,7 @@
 import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
-
+import matplotlib.ticker as mticker
 
 # Input
 code_file = Path(__file__).parent # Locates code
@@ -157,11 +157,15 @@ narrow_csv = narrow_df.to_csv(csv_path, index=False)
 
 # Create the histogram
 # 12 bins
+# xmax should be 100 if the density is normalized to 1 (as done with density=True)
+ax.yaxis.set_major_formatter(mticker.PercentFormatter(xmax=1))
 
 hist_df = pd.read_csv(csv_path) # Reads csv file created above
-hist_data = -(hist_df['Difference']) # Negative mirrors results
-hist_data.hist(bins = 8, density = True, edgecolor = 'black')
-plt.xlim(left=0, right = 15)
+formatter = mticker.PerentFormatter(xmax=1)
+hist_data = -(hist_df['Difference']) # Negative mirrors results, so we
+hist_data.hist(bins = 16, density = True, edgecolor = 'black')
+plt.xlim(left=-15, right = 15)
+
 
 # Add labels
 plt.xlabel("Annual decrease in flow (million acre-feet per year)")
