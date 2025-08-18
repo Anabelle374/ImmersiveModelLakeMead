@@ -55,7 +55,7 @@ if columns_series: # Adds all of the columns from the list to the wide data set 
 
 # Computes year to year differences and rounds to three decimal points
 # Negative value is a DECREASE in flow from year i to i+1, positive is an INCREASE in flow from year i to i+1.
-difference_df = -(df_wide.diff().round(3))
+difference_df = df_wide.diff().round(3)
 
 # Narrow Flow
     # Converts row numbers (years) into a column as well as a column for the traces. The values go into the flow column
@@ -127,30 +127,30 @@ narrow_csv = narrow_df.to_csv(csv_path, index=False)
 
 
 
-# Percent data
-difference_col = narrow_csv['Difference'].round(0)
-zero_one = 0
-two_three = 0
-four_five = 0
-six_seven = 0
-eight_nine = 0
-ten_eleven = 0
-twelve_thirteen = 0
-fourteen_fifteen = 0
-
-for pos_row in difference_col:
-    if pos_row == 0 or 1: zero_one += 1
-    if pos_row == 2 or 3: two_three += 1
-    if pos_row == 4 or 5: four_five += 1
-    if pos_row == 6 or 7: six_seven += 1
-    if pos_row == 8 or 9: eight_nine += 1
-    if pos_row == 10 or 11: ten_eleven += 1
-    if pos_row == 12 or 13: twelve_thirteen += 1
-    if pos_row == 14 or 15: fourteen_fifteen += 1
-
-percent = []
-
-count_dif_col = count()
+# # Percent data
+# difference_col = narrow_csv['Difference'].round(0)
+# zero_one = 0
+# two_three = 0
+# four_five = 0
+# six_seven = 0
+# eight_nine = 0
+# ten_eleven = 0
+# twelve_thirteen = 0
+# fourteen_fifteen = 0
+#
+# for pos_row in difference_col:
+#     if pos_row == 0 or 1: zero_one += 1
+#     if pos_row == 2 or 3: two_three += 1
+#     if pos_row == 4 or 5: four_five += 1
+#     if pos_row == 6 or 7: six_seven += 1
+#     if pos_row == 8 or 9: eight_nine += 1
+#     if pos_row == 10 or 11: ten_eleven += 1
+#     if pos_row == 12 or 13: twelve_thirteen += 1
+#     if pos_row == 14 or 15: fourteen_fifteen += 1
+#
+# percent = []
+#
+# count_dif_col = count()
 
 
 
@@ -159,8 +159,8 @@ count_dif_col = count()
 # 12 bins
 
 hist_df = pd.read_csv(csv_path) # Reads csv file created above
-hist_data = hist_df['Difference']
-hist_data.hist(bins = 8)
+hist_data = -(hist_df['Difference']) # Negative mirrors results
+hist_data.hist(bins = 8, density = True, edgecolor = 'black')
 plt.xlim(left=0, right = 15)
 
 # Add labels
