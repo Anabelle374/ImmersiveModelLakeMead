@@ -5,6 +5,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 
+
 # Input
 code_file = Path(__file__).parent # Locates code
 FlowYearDifferences = code_file.parent # Locates parent folder
@@ -154,22 +155,28 @@ narrow_csv = narrow_df.to_csv(csv_path, index=False)
 
 
 
-
+hist_df = pd.read_csv(csv_path) # Reads csv file created above
+hist_data = -(hist_df['Difference']) # Negative mirrors results, so we
 # Create the histogram
 # 12 bins
 # xmax should be 100 if the density is normalized to 1 (as done with density=True)
+fig, ax = plt.subplots()
+
+ax.hist(hist_data, bins =16, density=True)
+formatter = mticker.PercentFormatter(xmax=1)
 ax.yaxis.set_major_formatter(mticker.PercentFormatter(xmax=1))
 
-hist_df = pd.read_csv(csv_path) # Reads csv file created above
-formatter = mticker.PerentFormatter(xmax=1)
-hist_data = -(hist_df['Difference']) # Negative mirrors results, so we
-hist_data.hist(bins = 16, density = True, edgecolor = 'black')
-plt.xlim(left=-15, right = 15)
+#plt.ax.yaxis.set_major_formatter(formatter)
+
+#hist_data.hist(bins = 16, density = True, edgecolor = 'black')
+ax.set_xlim(left=-15, right = 15)
 
 
 # Add labels
-plt.xlabel("Annual decrease in flow (million acre-feet per year)")
-plt.ylabel("Percent")
+# plt.xlabel("Annual decrease in flow (million acre-feet per year)")
+# plt.ylabel("Percent")
+ax.set_xlabel("Difference")
+ax.set_ylabel("Percentage")
 plt.show()
 
 # Saves histogram
