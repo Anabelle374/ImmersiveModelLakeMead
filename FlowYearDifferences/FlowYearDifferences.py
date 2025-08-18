@@ -1,14 +1,9 @@
 
 # Interpreters
 import pandas as pd
-import openpyxl
-from openpyxl.worksheet.table import Table, TableStyleInfo
 from pathlib import Path
-from openpyxl import Workbook
-from openpyxl.utils import get_column_letter
-import os
 import matplotlib.pyplot as plt
-import numpy as np
+
 
 # Input
 code_file = Path(__file__).parent # Locates code
@@ -16,7 +11,7 @@ FlowYearDifferences = code_file.parent # Locates parent folder
 input_file = FlowYearDifferences / 'HydrologyScenarios.xlsx' # Shows where the input is relative to where the code is
 
 # Output
-output_file = "NarrowTableDifferences.xlsx" # Names output
+output_file = "NarrowTableDifferencesMIRRORED.xlsx" # Names output
 output_path = code_file / 'Results' / output_file   # Shows where the output is relative to where the code is
 
 sheet_names = pd.ExcelFile(input_file).sheet_names  # Variable for ease of access to all the sheets in HydrologyScenarios.xlsx
@@ -49,7 +44,7 @@ for ensemble_input in sheet_names:
         columns_series.append((col_name, vals)) # Adds the column name and the data to the list
 
     else:
-        # All other traces
+        # All other ensembles
         for trace in data_cols:
             vals = ensemble[trace].reset_index(drop=True) # Removes row numbers to rid index errors
             col_name = f"{ensemble_input}::{trace}" # Creates a new column name to avoid repeats and pandas creating a new name
@@ -60,7 +55,7 @@ if columns_series: # Adds all of the columns from the list to the wide data set 
 
 # Computes year to year differences and rounds to three decimal points
 # Negative value is a DECREASE in flow from year i to i+1, positive is an INCREASE in flow from year i to i+1.
-difference_df = df_wide.diff().round(3)
+difference_df = -(df_wide.diff().round(3))
 
 # Narrow Flow
     # Converts row numbers (years) into a column as well as a column for the traces. The values go into the flow column
@@ -131,57 +126,51 @@ narrow_csv = narrow_df.to_csv(csv_path, index=False)
 # plt.show()
 
 
-# # POSITIVE HISTOGRAM
-# ## Histogram ##
-hist_df = pd.read_csv(csv_path) # Reads input
-#
-# diffs = narrow_df['Difference'].dropna() # Calls difference column and drops empty values
-#
-# rounded = diffs.round(0).astype(int) # Rounds differences to nearest whole value and converts to integers
-#
-#  # Calls only positive integers
-#
-# counts = rounded.value_counts().sort_index() # Counts negative integer occurrences and sorts them
-# x_range = list(range(-20, 20)) # Creates range
-# counts = counts.reindex(x_range, fill_value=0)
-# histogram_df = counts.reset_index() # Creates counted index
-# histogram_df.columns = ['Difference', 'Occurrence'] # Calls histogram data
-#
-# hist_csv_path = output_path.parent / 'Hist_Differences.csv' # Saves histogram path
-# histogram_df.to_csv(hist_csv_path, index=False) #
-#
-# # Creates new figure that is the histogram
-# plt.figure(figsize=(10, 6))
-# plt.bar(histogram_df['Difference'], histogram_df['Occurrence'])
-# plt.xlabel('Year to Year Change in Flow (million acre-feet per year)')
-# plt.ylabel('Occurrence')
-# plt.title('Flow Year Differences')
-# plt.xticks(x_range)
-# plt.subplots_adjust(left=0.06, right=0.98, top=0.93, bottom=0.12)
-# plt.grid(axis='y', linestyle='--', alpha=0.3)
-# plt.tight_layout()
-#
-# # Saves histogram as a png
-# hist_png_path_positive = output_path.parent / 'POSTIVEFlowYearDifferences_hist.png'
-# plt.savefig(hist_png_path_positive, dpi=300)
-#
-# # Shows histogram
-# plt.show()
+
+# Percent data
+difference_col = narrow_csv['Difference'].round(0)
+zero_one = 0
+two_three = 0
+four_five = 0
+six_seven = 0
+eight_nine = 0
+ten_eleven = 0
+twelve_thirteen = 0
+fourteen_fifteen = 0
+
+for pos_row in difference_col:
+    if pos_row == 0 or 1: zero_one += 1
+    if pos_row == 2 or 3: two_three += 1
+    if pos_row == 4 or 5: four_five += 1
+    if pos_row == 6 or 7: six_seven += 1
+    if pos_row == 8 or 9: eight_nine += 1
+    if pos_row == 10 or 11: ten_eleven += 1
+    if pos_row == 12 or 13: twelve_thirteen += 1
+    if pos_row == 14 or 15: fourteen_fifteen += 1
+
+percent = []
+
+count_dif_col = count()
+
+
 
 
 # Create the histogram
 # 12 bins
-# Plot from 0 to -12. X-axis labels as positive 0, 1, 2, 3 ... 12
-data = hist_df['Difference']
 
-plt.hist(data, bins=20)  # Using 20 bins
-# Add labels and a title
+hist_df = pd.read_csv(csv_path) # Reads csv file created above
+hist_data = hist_df['Difference']
+hist_data.hist(bins = 8)
+plt.xlim(left=0, right = 15)
+
+# Add labels
 plt.xlabel("Annual decrease in flow (million acre-feet per year)")
 plt.ylabel("Percent")
-#plt.title("Histogram of Sample Data")
 plt.show()
 
-#print(f"Histogram image saved to: {hist_png_path}")
+# Saves histogram
+hist_png_path = output_path.parent / 'FlowYearDifferences_hist.png'
+plt.savefig(hist_png_path, dpi=300)
+print(f"Histogram image saved to: {hist_png_path}")
 
 print(f"\nResults saved to:\n{csv_path}")
-
