@@ -1,3 +1,4 @@
+# This code answers the question: What is the change in annual flow over all Reclamation's Post-2026 ensembles and traces.
 
 # Interpreters
 import pandas as pd
@@ -175,7 +176,7 @@ ax.yaxis.set_major_formatter(mticker.PercentFormatter(xmax=1))
 # Add labels
 # plt.xlabel("Annual decrease in flow (million acre-feet per year)")
 # plt.ylabel("Percent")
-ax.set_xlabel("Difference")
+ax.set_xlabel("Annual decrease in flow (million acre-feet per year)")
 ax.set_ylabel("Percentage")
 plt.show()
 
