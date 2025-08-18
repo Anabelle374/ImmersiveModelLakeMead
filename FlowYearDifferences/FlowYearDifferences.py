@@ -162,14 +162,14 @@ hist_data = -(hist_df['Difference']) # Negative mirrors results, so we
 # xmax should be 100 if the density is normalized to 1 (as done with density=True)
 fig, ax = plt.subplots()
 
-ax.hist(hist_data, bins =16, density=True)
+ax.hist(hist_data, bins =60, density=True)
 formatter = mticker.PercentFormatter(xmax=1)
 ax.yaxis.set_major_formatter(mticker.PercentFormatter(xmax=1))
 
 #plt.ax.yaxis.set_major_formatter(formatter)
 
 #hist_data.hist(bins = 16, density = True, edgecolor = 'black')
-ax.set_xlim(left=-15, right = 15)
+#ax.set_xlim(left=-15, right = 15)
 
 
 # Add labels
