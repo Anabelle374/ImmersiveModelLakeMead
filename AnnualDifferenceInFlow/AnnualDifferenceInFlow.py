@@ -91,20 +91,21 @@ fig, ax = plt.subplots() # Prepares the plot below
 edges = np.arange(-0.5, 8, 1) # Defines bin boundaries
 ax.hist(hist_data, bins=edges, density=True, edgecolor='black') # Creates histogram
 
-ax.yaxis.set_major_formatter(mticker.PercentFormatter(xmax=1)) # Y-axis is percentage
+ax.yaxis.set_major_formatter(mticker.PercentFormatter(xmax=1, decimals=0)) # Y-axis is percentage
 
 # Further definition of bin boundaries
 ax.set_xticks(np.arange(0, 8))
 ax.set_xlim(left=-0.5, right=7.5)
 
 # Axis labels
-ax.set_xlabel("Annual decrease in flow\n (million acre-feet per year)", fontsize=14)
-ax.set_ylabel("Percentage", fontsize=14)
-ax.tick_params(axis = 'both', labelsize = 12)
+ax.set_xlabel("Annual decrease in flow\n (million acre-feet per year)", fontsize=24)
+ax.set_ylabel("Percentage", fontsize=26)
+ax.tick_params(axis='both', labelsize=20)
+fig.tight_layout()
 
 # Saves the histogram
 hist_png_path = output_path.parent / 'AnnualDecreaseInFlow.png'
-plt.savefig(hist_png_path, dpi=300)
+plt.savefig(hist_png_path, dpi=300, bbox_inches='tight')
 
 print(f"\nHistogram image saved to:\n {hist_png_path}")
 
