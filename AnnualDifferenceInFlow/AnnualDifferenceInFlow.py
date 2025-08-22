@@ -10,9 +10,10 @@ import matplotlib.ticker as mticker
 import numpy as np
 import sys
 
-# Input / output
+# Input
 code_file = Path(__file__).parent # Locates code
 input_file = '10yearsMinimumHydrologyResults.xlsx' # Identifies input
+# Output
 output_file = "Differences.xlsx" # Identifies output
 output_path = code_file / 'Results' / output_file # Locates output path
 
@@ -52,6 +53,14 @@ narrow_flow['Difference'] = (
 
 # Creates final dataframe with columns identified below
 result = narrow_flow[['Ensemble', 'Trace', 'Row', 'Difference']].reset_index(drop=True)
+
+# Count
+num_sequences = narrow_flow.groupby(['Ensemble', 'Trace', 'Start Row']).ngroups
+num_ensembles = result['Ensemble'].nunique()
+num_traces = result['Trace'].nunique()
+print(f"\nSequences of 10 consecutive years in results: {num_sequences}")
+print(f"Ensembles in results: {num_ensembles}")
+print(f"Traces in results: {num_traces}")
 
 # Write to Excel with a table
 with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
