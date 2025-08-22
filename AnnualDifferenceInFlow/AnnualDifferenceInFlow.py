@@ -89,7 +89,7 @@ ax.set_xticks(np.arange(0, 8))
 ax.set_xlim(left=-0.5, right=7.5)
 
 # Axis labels
-ax.set_xlabel("Annual decrease in flow (million acre-feet per year)", fontsize=14)
+ax.set_xlabel("Annual decrease in flow\n (million acre-feet per year)", fontsize=14)
 ax.set_ylabel("Percentage", fontsize=14)
 ax.tick_params(axis = 'both', labelsize = 12)
 
