@@ -1,6 +1,6 @@
 #########
-# This file shows a time-series plot of Lake Mead storage and elevation vs time for one model session.
-# The plot also shows the protection elevation chosen by the Reclamation user.
+# This file shows a plot of a storage ratio (Lake Mead storage / Protection Elevation) for each protection elevation in recent Lake Mead Immersive model sessions.
+# 
 # We save the figure to a png picture file.
 
 # This script reads in compiled results from the LowStorageBlogGraph.xlsx file
@@ -9,6 +9,7 @@
 # October 17, 2025
 # A02369941@aggies.usu.edu
 ###########################
+
 
 
 import numpy as np
