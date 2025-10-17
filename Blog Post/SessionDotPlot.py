@@ -1,3 +1,16 @@
+#########
+# This file shows a time-series plot of Lake Mead storage and elevation vs time for one model session.
+# The plot also shows the protection elevation chosen by the Reclamation user.
+# We save the figure to a png picture file.
+
+# This script reads in compiled results from the LowStorageBlogGraph.xlsx file
+#
+# Anabelle Myers
+# October 17, 2025
+# A02369941@aggies.usu.edu
+###########################
+
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -5,6 +18,8 @@ from pathlib import Path
 
 # Locates code and input
 code_file = Path(__file__)
+
+#This file is organized as columns of [Session][Variable][Protection Elevation][Year 1][Year 2][Year 3]
 input_file = code_file.parent / 'LowStorageBlogGraph.xlsx'
 
 # Reads the input and forces values into numeric
