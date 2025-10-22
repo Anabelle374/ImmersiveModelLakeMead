@@ -71,14 +71,26 @@ for i in range(len(protect_elevs)):
     all_x.extend(x_values)
     all_y.extend(y_values)
 
-point_colors = ['red' if (y < 1.0) else 'blue' for y in all_y]
+# point_colors = ['red' if (y < 1.0) else 'blue' for y in all_y]
+#
+# plt.scatter(all_x, all_y, color=point_colors, marker='o', s=100, alpha=0.9)
 
-plt.scatter(all_x, all_y, color=point_colors, s=100, alpha=0.9)
+# Separate red and blue points
+red_x = [x for x, y in zip(all_x, all_y) if y < 1.0]
+red_y = [y for y in all_y if y < 1.0]
+blue_x = [x for x, y in zip(all_x, all_y) if y >= 1.0]
+blue_y = [y for y in all_y if y >= 1.0]
 
-plt.axhline(1.0, color='red', linewidth=2.0, linestyle='-')
 
-plt.xlabel('Protection Elevation\n(Protect Storage: Set to Protect)', fontsize=12, fontweight='bold')
-plt.ylabel('Storage / Protect Storage', fontsize=12, fontweight='bold')
+plt.scatter(red_x, red_y, color='red', marker='D', s=100, alpha=0.9)
+plt.scatter(blue_x, blue_y, color='blue', marker='o', s=100, alpha=0.9)
+
+
+
+plt.axhline(1.0, color='purple', linewidth=2.0, linestyle='--')
+
+plt.xlabel('Chosen Protection Elevation\n(feet)', fontsize=18, fontweight='bold')
+plt.ylabel('Lake Mead Storage to Protection Ratio\n(storage volume/protection volume)', fontsize=18, fontweight='bold')
 
 
 unique_elevs = protect_elevs.tolist()
@@ -89,14 +101,12 @@ for i, elev in enumerate(unique_elevs):
     else:
         elev_str = f"{elev:.1f}"
 
-    stor_vals = all_storages[i] if i < len(all_storages) else [np.nan, np.nan, np.nan]
-    stor_formatted = ", ".join([f"{s:.1f}" if not np.isnan(s) else "NaN" for s in stor_vals])
-
-    label = f"{elev_str}\n{stor_formatted}"
+    label = f"{elev_str}"
     xtick_labels.append(label)
 
 ax.set_xticks(unique_elevs)
-ax.set_xticklabels(xtick_labels, fontsize=10, fontweight='bold')
+plt.yticks(fontsize=18, fontweight='bold')
+ax.set_xticklabels(xtick_labels, fontsize=18, fontweight='bold')
 
 for label in ax.get_yticklabels():
     label.set_fontweight('bold')

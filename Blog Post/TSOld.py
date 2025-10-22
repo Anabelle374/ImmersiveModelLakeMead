@@ -52,45 +52,56 @@ print(aug_twenty_protect_s)
 print(aug_twenty_protect_e)
 print(aug_twenty_elevation)
 
-
 aug_twenty_protect_s_series = np.repeat(aug_twenty_protect_s, len(year_header))
 
+# y-axis (storage)
 fig, ax1 = plt.subplots()
-ax1.plot(year_header, aug_twenty_storage, marker='o', markersize=8, linewidth=3,
-         label='Storage', color='tab:blue')
-ax1.plot(year_header, aug_twenty_protect_s_series, marker='d', markersize=8,
-         color='red', linewidth=3, label='Protection Limit')
-
+ax1.plot(year_header, aug_twenty_storage, marker='o', markersize=8, linewidth=3, label='Storage', color='tab:blue')
+ax1.plot(year_header, aug_twenty_protect_s_series, marker='d', markersize=8,color='red', linewidth=3, label='Protection Limit')
 ax1.set_ylim(bottom=0)
-ax1.set_ylabel('Storage (million acre-feet)', fontweight='bold', fontsize=12)
+ax1.set_ylabel('Storage', fontweight='bold', fontsize=12)
 ax1.tick_params(axis='y', labelsize=11)
 ax1.tick_params(axis='x', labelsize=11)
+
 for label in ax1.get_xticklabels() + ax1.get_yticklabels():
     label.set_fontweight('bold')
+
 ax1.grid(linewidth=1)
 ax1.set_xlabel(None, fontweight='bold', fontsize=12)
 
-
+# Secondary y-axis (elevation)
 ax2 = ax1.twinx()
 
+# Match the y limits and ticks to the left axis
 ax2.set_ylim(ax1.get_ylim())
 ax2.set_yticks(ax1.get_yticks())
 
+order = np.argsort(aug_twenty_storage)
+S_sorted = aug_twenty_storage[order]
+E_sorted = aug_twenty_elevation[order]
 
-S_anchor = np.array([0.0, aug_twenty_protect_s, *aug_twenty_storage], dtype=float)
-E_anchor = np.array([0.0, 1000.0, *aug_twenty_elevation], dtype=float)
-
-order = np.argsort(S_anchor)
-S_sorted = S_anchor[order]
-E_sorted = E_anchor[order]
-
+# Interpolate elevation labels from the Excel pairs
 elev_labels = np.interp(ax1.get_yticks(), S_sorted, E_sorted)
 
+# Apply labels
 ax2.set_yticklabels([f"{e:.1f}" for e in elev_labels], fontweight='bold')
-ax2.set_ylabel('Elevation (feet)', fontweight='bold', fontsize=12)
+ax2.set_ylabel('Elevation (ft)', fontweight='bold', fontsize=12)
 ax2.tick_params(axis='y', labelsize=11)
 
+# Set labels and formatting
+ax2.set_yticklabels([f"{e:.1f}" for e in elev_labels], fontweight='bold')
+ax2.set_ylabel('Elevation (ft)', fontweight='bold', fontsize=12)
+ax2.tick_params(axis='y', labelsize=11)
 
+# Legend and title
 ax1.legend(loc='best', fontsize=11, frameon=True)
 plt.savefig('TimeSeries.png')
 plt.show()
+
+# Creating box plot figure
+# plt.plot(year_header, aug_twenty_storage, marker='o', label='Storage')
+# plt.plot(year_header, aug_twenty_protect_s_series, color='red', label='Protection Limit')
+# plt.ylim(bottom=0)
+# plt.grid()
+# plt.ylabel('Storage')
+# plt.legend()
