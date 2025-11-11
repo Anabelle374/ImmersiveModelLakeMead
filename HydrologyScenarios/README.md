@@ -1,4 +1,4 @@
-# Supporting Extreme Low Reservoir Inflows for Immersive Model for Lake Mead
+# HydrologyScenarios
 
 This code identifies periods of three-, four-, and 10-year extreme low natural flow at Lee Ferry. 
 The code also identifies when the rolling sum of ten consecutive values sums to less than 75 million acre-feet (maf).
