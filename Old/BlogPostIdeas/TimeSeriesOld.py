@@ -9,7 +9,7 @@ input_file = code_file.parent / 'LowStorageBlogGraph.xlsx'
 
 # Reads the input and forces values into numeric
 ensemble = pd.read_excel(input_file)
-ensemble.iloc[:, 3:6] = ensemble.iloc[:, 3:6].apply(pd.to_numeric, errors="coerce")
+ensemble.iloc[:, 3:7] = ensemble.iloc[:, 3:7].apply(pd.to_numeric, errors="coerce")
 
 # Defines each session to three rows
 session_data = 3
@@ -22,45 +22,43 @@ protect_storages = []
 protect_elevs = []
 
 for first in range(0, length, session_data):
-    sessions = ensemble.iloc[first:first + session_data, 3:6]   # Extracts year columns
-
+    sessions = ensemble.iloc[first:first + session_data, 3:7]  # Extracts year columns
     years = sessions.iloc[0].values  # Locates year storage data in sessions
     all_years.append(years)
 
     elevs = sessions.iloc[2].values  # Locates year storage data in sessions
     all_elevs.append(elevs)
 
-    protect_s = ensemble.iloc[first:first + session_data, 2]   # Extracts protect column
+    protect_s = ensemble.iloc[first:first + session_data, 2]  # Extracts protect column
     storage = protect_s.iloc[0]
     protect_storages.append(storage)
 
-    protect_e = ensemble.iloc[first:first + session_data, 2]   # Extracts protect column
+    protect_e = ensemble.iloc[first:first + session_data, 2]  # Extracts protect column
     elevation = protect_e.iloc[2]
     protect_elevs.append(elevation)
 
-
 all_years = np.array(all_years)
-aug_twenty_storage = all_years[0]
-aug_twenty_protect_s = protect_storages[0]
-aug_twenty_elevation = all_elevs[0]
-aug_twenty_protect_e = protect_elevs[0]
-year_header = np.array(list(ensemble.columns)[3:6])
+
+aug_eighteen_storage = all_years[2]
+aug_eighteen_protect_s = protect_storages[2]
+aug_eighteen_elevation = all_elevs[2]
+aug_eighteen_protect_e = protect_elevs[2]
+
+year_header = np.array(list(ensemble.columns)[3:7])
 
 print(year_header)
-print(aug_twenty_storage)
-print(aug_twenty_protect_s)
-print(aug_twenty_protect_e)
-print(aug_twenty_elevation)
+print(aug_eighteen_storage)
+print(aug_eighteen_protect_s)
+print(aug_eighteen_protect_e)
+print(aug_eighteen_elevation)
 
-
-aug_twenty_protect_s_series = np.repeat(aug_twenty_protect_s, len(year_header))
+aug_eighteen_protect_s_series = np.repeat(aug_eighteen_protect_s, len(year_header))
 
 fig, ax1 = plt.subplots()
-ax1.plot(year_header, aug_twenty_storage, marker='o', markersize=8, linewidth=3,
+ax1.plot(year_header, aug_eighteen_storage, marker='o', markersize=8, linewidth=3,
          label='Storage', color='tab:blue')
-ax1.plot(year_header, aug_twenty_protect_s_series, marker='d', markersize=8,
+ax1.plot(year_header, aug_eighteen_protect_s_series, marker='d', markersize=8,
          color='red', linewidth=3, label='Protection Limit')
-
 ax1.set_ylim(bottom=0)
 ax1.set_ylabel('Storage (million acre-feet)', fontweight='bold', fontsize=12)
 ax1.tick_params(axis='y', labelsize=11)
@@ -71,18 +69,28 @@ ax1.grid(linewidth=1)
 ax1.set_xlabel(None, fontweight='bold', fontsize=12)
 
 
-ax2 = ax1.twinx()
 
-ax2.set_ylim(ax1.get_ylim())
-ax2.set_yticks(ax1.get_yticks())
+all_S_data = np.concatenate(all_years)
+all_E_data = np.concatenate(all_elevs)
 
+S_anchor_base = np.concatenate([protect_storages, all_S_data]).astype(float)
+E_anchor_base = np.concatenate([protect_elevs, all_E_data]).astype(float)
 
-S_anchor = np.array([0.0, aug_twenty_protect_s, *aug_twenty_storage], dtype=float)
-E_anchor = np.array([0.0, 1000.0, *aug_twenty_elevation], dtype=float)
+S_anchor = np.append(S_anchor_base, 0.0)
+E_anchor = np.append(E_anchor_base, 0.0)
+
+valid_indices = ~np.isnan(S_anchor) & ~np.isnan(E_anchor)
+S_anchor = S_anchor[valid_indices]
+E_anchor = E_anchor[valid_indices]
 
 order = np.argsort(S_anchor)
 S_sorted = S_anchor[order]
 E_sorted = E_anchor[order]
+
+ax2 = ax1.twinx()
+
+ax2.set_ylim(ax1.get_ylim())
+ax2.set_yticks(ax1.get_yticks())
 
 elev_labels = np.interp(ax1.get_yticks(), S_sorted, E_sorted)
 
@@ -90,7 +98,7 @@ ax2.set_yticklabels([f"{e:.1f}" for e in elev_labels], fontweight='bold')
 ax2.set_ylabel('Elevation (feet)', fontweight='bold', fontsize=12)
 ax2.tick_params(axis='y', labelsize=11)
 
-
 ax1.legend(loc='best', fontsize=11, frameon=True)
-plt.savefig('TimeSeries.png')
+
+plt.savefig('TimeSeriesOld.png')
 plt.show()

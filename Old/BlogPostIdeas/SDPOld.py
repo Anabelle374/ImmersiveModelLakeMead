@@ -117,5 +117,5 @@ ax.set_ylim(bottom=0)
 
 plt.tight_layout()
 
-plt.savefig("SessionDotPlotFinal.png", dpi=200)
+plt.savefig("SessionDotPlotOld.png", dpi=200)
 plt.show()

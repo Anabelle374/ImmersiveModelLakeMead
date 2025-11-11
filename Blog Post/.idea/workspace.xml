@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="416b4beb-95f4-4485-ae8a-5bb7c434dad4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Blog Post.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlogPostGraph.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoxPlot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LowStorageBlogGraph.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SessionDotPlot.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SessionDotPlot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SessionDotPlotFinaGeml.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SessionDotPlotFinal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SessionDotPlotFinal_CorrectLabels.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SessionDotPlotNoColors.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TSOld.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TimeSeries.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TimeSeries.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aitry.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/problem1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/.idea/FlowYearDifferences.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/FlowYearDifferences.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/Results/BinsDifferenceData.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/Results/Book1.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/Results/FlowYearDifferences_hist.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/Results/NarrowTableDifferences.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/Results/NarrowTableDifferencesMIRRORED.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/Results/POSTIVEFlowYearDifferences_hist.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/Results/WideDataSet.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/Results/WideTableDifferences.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FlowYearDifferences/Results/~$WideDataSet.xlsx" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="33k9bWAMFTjV51ClqsCJyMh1X5O" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.BlogPostGraph.executor&quot;: &quot;Run&quot;,
+    &quot;Python.BlogPostGraphTry2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.GeminiRevise.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SDPOld.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SessionDotPlot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TSOld.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TimeSeries.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TimeSeriesMin.executor&quot;: &quot;Run&quot;,
+    &quot;Python.TimeSeriesOld.executor&quot;: &quot;Run&quot;,
+    &quot;Python.aitry.executor&quot;: &quot;Run&quot;,
+    &quot;Python.moreTS.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-b3ae9b5d7125-f0eec537fc84-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23892.439" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="416b4beb-95f4-4485-ae8a-5bb7c434dad4" name="Changes" comment="" />
+      <created>1759850274616</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1759850274616</updated>
+    </task>
+    <servers />
+  </component>
+</project>
