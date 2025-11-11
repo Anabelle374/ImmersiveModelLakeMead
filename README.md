@@ -1,4 +1,4 @@
-# Quantifying Data for Extreme Low Inflow and Storage Scenarios for Lake Mead
+# Quantifying Data for Extreme Low Inflow and Extreme Low Storage Scenarios for Lake Mead
 
 
 ## Contact Information
